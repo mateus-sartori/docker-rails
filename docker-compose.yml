@@ -1,12 +1,12 @@
 version: '3'
 services:
   db: 
-    image: mysql:latest
-    restart: always
+    image: mysql:5.7
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: easyframes
-      MYSQL_PASSWORD: 
+      MYSQL_PASSWORD: root
     ports:
       - "3307:3306"
   app: 
@@ -17,8 +17,6 @@ services:
     ports: 
       - "3000:3000"
     depends_on:
-      - db
-    links:
       - db
     environment:
       DB_USER: root
